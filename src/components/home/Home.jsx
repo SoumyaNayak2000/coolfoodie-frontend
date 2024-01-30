@@ -47,9 +47,7 @@ const Home = () => {
           Explore Menu
         </motion.a>
       </section>
-
       <Founder />
-
       <Menu />
     </>
   );
