@@ -43,8 +43,11 @@
           font-size: 1rem;
         }
       }
+     >span{
+      color:red;
+     }
       > button {
-        background-color: $red;
+        background-color: $blue;
         color: white;
         outline: none;
         border: none;

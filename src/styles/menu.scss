@@ -3,7 +3,7 @@
 #menu {
   width: 100%;
   min-height: 100vh;
-  background-color: white;
+  background-image: linear-gradient(to right, #ddd0c8,$pink);
   padding: 4rem;
 
   > h1 {
@@ -26,7 +26,7 @@
 
   > div {
     border-radius: 20px 20px 0 0;
-    background-color: $red;
+    background-color: $blue;
     display: flex;
     align-items: center;
     padding: 2rem;
@@ -56,7 +56,7 @@
     }
 
     > button {
-      background-color: $red;
+      background-color: $blue;
       color: white;
       border: none;
       padding: 1rem 2rem;
@@ -65,7 +65,7 @@
       cursor: pointer;
 
       &:hover {
-        background-color: $reddark;
+        background-color: $bluedark;
       }
     }
   }

@@ -36,6 +36,9 @@ const Cart = () => {
   } = useSelector((state) => state.cart);
 
   const { cartItems: orderItems } = useSelector((state) => state.cart);
+  console.log(orderItems);
+  console.log(orderItems.burgerWithFries.quantity);
+  // console.log(orderItems);
 
   const dispatch = useDispatch();
 

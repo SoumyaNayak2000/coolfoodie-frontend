@@ -15,36 +15,100 @@ const Shipping = () => {
   const [phoneNo, setPhoneNo] = useState(shippingInfo.phoneNo);
   const [pinCode, setPinCode] = useState(shippingInfo.pinCode);
 
+  const [formerror, setFormError] = useState({});
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const validationFn = (hNo, city, country, state, phoneNo, pinCode) => {
+    let tempErrorObj = {};
+
+    //H-No is empty or not
+    if (hNo === "") {
+      tempErrorObj.hNo = "H-No is empty.";
+    }
+
+    //city is empty or not
+    if (city === "") {
+      tempErrorObj.city = "City is empty.";
+    }
+
+    //country is empty or not
+    if (country === "") {
+      tempErrorObj.country = "country is empty.";
+    }
+
+    //state is empty or not
+    if (state === "") {
+      tempErrorObj.state = "state is empty.";
+    }
+    //phoneNo is empty or not
+    if (phoneNo === "") {
+      tempErrorObj.phoneNo = "phoneNo is empty.";
+    }
+    //pinCode is empty or not
+    if (pinCode.length > 6) {
+      tempErrorObj.pinCode = "pinCode should be six digits.";
+    }
+
+    //length of phoneNo should be exact 10
+    if (phoneNo.length !== 10) {
+      tempErrorObj.phoneNo = "Length of mobile number is incoorect";
+    }
+
+    //format of mobile number is correct - hw
+    let regexmobile = new RegExp(
+      "^[+]?[(]?[0-9]{3}[)]?[-s.]?[0-9]{3}[-s.]?[0-9]{4,6}$"
+    );
+    if (!regexmobile.test(phoneNo)) {
+      tempErrorObj.phoneNo = "phoneNo format is invalid";
+    }
+
+    //console.log(tempErrorObj);
+    setFormError(tempErrorObj);
+
+    let error = Object.keys(tempErrorObj).length;
+    // console.log(error)
+    if (error === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch({
-      type: "addShippingInfo",
-      payload: {
-        hNo,
-        city,
-        state,
-        country,
-        pinCode,
-        phoneNo,
-      },
-    });
 
-    localStorage.setItem(
-      "shippingInfo",
-      JSON.stringify({
-        hNo,
-        city,
-        state,
-        country,
-        pinCode,
-        phoneNo,
-      })
-    );
+    let errorStatus = validationFn(hNo, city, country, state, phoneNo, pinCode);
+    console.log(errorStatus);
 
-    navigate("/confirmorder");
+    if (errorStatus) {
+      dispatch({
+        type: "addShippingInfo",
+        payload: {
+          hNo,
+          city,
+          state,
+          country,
+          pinCode,
+          phoneNo,
+        },
+      });
+
+      localStorage.setItem(
+        "shippingInfo",
+        JSON.stringify({
+          hNo,
+          city,
+          state,
+          country,
+          pinCode,
+          phoneNo,
+        })
+      );
+
+      navigate("/confirmorder");
+    }
   };
 
   return (
@@ -61,6 +125,7 @@ const Shipping = () => {
               required
               onChange={(e) => setHNo(e.target.value)}
             />
+            <span>{formerror.hNo}</span>
           </div>
           <div>
             <label>City</label>
@@ -119,6 +184,7 @@ const Shipping = () => {
               onChange={(e) => setPinCode(e.target.value)}
             />
           </div>
+          <span>{formerror.pinCode}</span>
           <div>
             <label>Phone No.</label>
             <input
@@ -129,6 +195,8 @@ const Shipping = () => {
               onChange={(e) => setPhoneNo(e.target.value)}
             />
           </div>
+          <span>{formerror.phoneNo}</span>
+
           <button type="submit">Confirm Order</button>
         </form>
       </main>

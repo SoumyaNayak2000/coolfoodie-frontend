@@ -30,21 +30,6 @@ const About = () => {
             <RiFindReplaceLine />
           </Link>
         </article>
-
-        <div>
-          <h2>Founder</h2>
-          <article>
-            <div>
-              <img src={me} alt="Founder" />
-              <h3>CoolFoodie</h3>
-            </div>
-
-            <p>
-              I am CoolFoodie, the founder of CoolFoodie. Affiliated to God
-              Taste...
-            </p>
-          </article>
-        </div>
       </main>
     </section>
   );
