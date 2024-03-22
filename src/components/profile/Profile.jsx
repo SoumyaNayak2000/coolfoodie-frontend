@@ -29,12 +29,12 @@ const Profile = () => {
     <section className="profile">
       {loading === false ? (
         <main>
-          <motion.img src={user && user.photo} alt="User" {...options} />
+          <motion.img src={user && user?.photo} alt="User" {...options} />
           <motion.h5 {...options} transition={{ delay: 0.3 }}>
-            {user.name}
+            {user?.name}
           </motion.h5>
 
-          {user.role === "admin" && (
+          {user?.role === "admin" && (
             <motion.div {...options} transition={{ delay: 0.5 }}>
               <Link
                 to="/admin/dashboard"
