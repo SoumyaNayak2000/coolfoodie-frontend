@@ -18,7 +18,7 @@ const Home = () => {
 
   return (
     <>
-      <Items />
+      {/* <Items /> */}
       <section className="home">
         <div>
           <motion.h1 {...options}>
