@@ -16,5 +16,5 @@ const store = configureStore({
 
 export default store;
 
-export const server = "http://localhost:8081/api/v1";
-// export const server = "https://coolfoodie-backend.onrender.com/api/v1";
+// export const server = "http://localhost:8081/api/v1";
+export const server = "https://coolfoodie-backend.onrender.com/api/v1";
